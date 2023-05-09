@@ -14,17 +14,17 @@ import br.com.fiap.AbcTechApi.service.AssistanceService;
 @RequestMapping("/assists")
 @RestController
 public class AssistanceController {
-
-    private final AssistanceService assistanceService;
     
+    private final AssistanceService assistanceService;
+
     @Autowired
     public AssistanceController(AssistanceService assistanceService){
-         this.assistanceService = assistanceService;
+       this.assistanceService = assistanceService;
     }
     
     @GetMapping
      public ResponseEntity<List<Assistance>> getAssists(){
-         return null;// ResponseEntity.ok(assistanceService.getAssistsList());
+         return ResponseEntity.ok(assistanceService.getAssistsList());
      }
     
 }
