@@ -2,6 +2,7 @@ package br.com.fiap.AbcTechApi.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.AbcTechApi.entity.Assistance;
@@ -13,10 +14,13 @@ public class AssistanceServiceImpl implements AssistanceService {
 
     private final AssistanceRepository assistanceRepository;
 
+    @Autowired
     public AssistanceServiceImpl(AssistanceRepository assistanceRepository){
         this.assistanceRepository = assistanceRepository;
     }
 
     @Override
-    public List<Assistance> getAssistsList() { return this.assistanceRepository.findAll();}    
+    public List<Assistance> getAssists() {
+         return this.assistanceRepository.findAll();
+        }    
 }

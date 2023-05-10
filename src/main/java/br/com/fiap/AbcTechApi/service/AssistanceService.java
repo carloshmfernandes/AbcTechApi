@@ -4,5 +4,5 @@ import br.com.fiap.AbcTechApi.entity.Assistance;
 import java.util.List;
 
 public interface AssistanceService {
-    List<Assistance> getAssistsList();
+    List<Assistance> getAssists();
 }

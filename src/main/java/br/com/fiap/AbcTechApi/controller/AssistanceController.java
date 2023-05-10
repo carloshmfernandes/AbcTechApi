@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.AbcTechApi.entity.Assistance;
-import br.com.fiap.AbcTechApi.service.AssistanceService;
+import br.com.fiap.AbcTechApi.application.AssistanceApplication;
+import br.com.fiap.AbcTechApi.application.dto.AssistResponseDto;
 
 @RequestMapping("/assists")
 @RestController
 public class AssistanceController {
-    
-    private final AssistanceService assistanceService;
+
+    private final AssistanceApplication assistanceApplication;
 
     @Autowired
-    public AssistanceController(AssistanceService assistanceService){
-       this.assistanceService = assistanceService;
+    public AssistanceController(AssistanceApplication assistanceApplication){
+               this.assistanceApplication = assistanceApplication;
     }
     
     @GetMapping
-     public ResponseEntity<List<Assistance>> getAssists(){
-         return ResponseEntity.ok(assistanceService.getAssistsList());
-     }
+    public ResponseEntity<List<AssistResponseDto>> getAssists(){
+         return ResponseEntity.ok(assistanceApplication.getAssists());
+    }
     
 }
