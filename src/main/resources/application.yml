@@ -3,14 +3,12 @@ server:
 
 build_name: @project.name@
 build_version: @project.version@
-
 spring:
   datasource:
-    username: root
-    password: Fiap1234
-    url: jdbc:mysql://localhost:3306/abc_tech
+    password: ${DB_PASSWORD}
+    username: ${DB_USER}
+    url: jdbc:mysql://${DB_HOSTNAME}:${DB_PORT}/${DB_NAME}
   jpa:
-    hibernate:            
+    hibernate:
       ddl-auto: none
     show-sql: true
-
