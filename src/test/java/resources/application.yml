@@ -5,5 +5,5 @@ spring:
     url: jdbc:h2:mem::abc_tech
   jpa:
     hibernate:            
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
