@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import javax.validation.constraints.PastOrPresent;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor

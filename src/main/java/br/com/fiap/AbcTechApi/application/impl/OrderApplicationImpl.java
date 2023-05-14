@@ -1,14 +1,13 @@
 package br.com.fiap.AbcTechApi.application.impl;
 
-import java.sql.Timestamp;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import br.com.fiap.AbcTechApi.application.OrderApplication;
 import br.com.fiap.AbcTechApi.application.dto.OrderDto;
 import br.com.fiap.AbcTechApi.entity.Order;
 import br.com.fiap.AbcTechApi.entity.OrderLocation;
 import br.com.fiap.AbcTechApi.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import java.sql.Timestamp;
 
 @Component
 public class OrderApplicationImpl implements OrderApplication {

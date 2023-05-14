@@ -1,12 +1,5 @@
 package br.com.fiap.AbcTechApi.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.fiap.AbcTechApi.entity.Assistance;
 import br.com.fiap.AbcTechApi.entity.Order;
 import br.com.fiap.AbcTechApi.handler.exception.MaximumAssistException;
@@ -14,6 +7,12 @@ import br.com.fiap.AbcTechApi.handler.exception.MinimumAssistRequiredException;
 import br.com.fiap.AbcTechApi.repository.AssistanceRepository;
 import br.com.fiap.AbcTechApi.repository.OrderRepository;
 import br.com.fiap.AbcTechApi.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {

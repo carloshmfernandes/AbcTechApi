@@ -1,5 +1,6 @@
 package br.com.fiap.AbcTechApi.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

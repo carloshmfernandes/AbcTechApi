@@ -1,5 +1,6 @@
 package br.com.fiap.AbcTechApi.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "assistances")
 public class Assistance {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", nullable = false, length = 150)

@@ -10,4 +10,3 @@ public class MaximumAssistException extends RuntimeException{
         this.description = description;
     }
 }
-

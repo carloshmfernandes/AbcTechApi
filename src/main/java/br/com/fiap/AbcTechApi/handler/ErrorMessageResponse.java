@@ -10,4 +10,3 @@ public class ErrorMessageResponse {
     private String description;
     private Integer statusCode;
 }
-

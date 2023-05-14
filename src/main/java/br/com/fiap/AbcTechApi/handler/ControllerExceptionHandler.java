@@ -1,12 +1,11 @@
 package br.com.fiap.AbcTechApi.handler;
 
+import br.com.fiap.AbcTechApi.handler.exception.MaximumAssistException;
+import br.com.fiap.AbcTechApi.handler.exception.MinimumAssistRequiredException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import br.com.fiap.AbcTechApi.handler.exception.MaximumAssistException;
-import br.com.fiap.AbcTechApi.handler.exception.MinimumAssistRequiredException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -26,4 +25,3 @@ public class ControllerExceptionHandler {
     }
 
 }
-
