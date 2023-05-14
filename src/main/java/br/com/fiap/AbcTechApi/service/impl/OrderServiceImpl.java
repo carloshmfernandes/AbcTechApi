@@ -20,6 +20,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final AssistanceRepository assistanceRepository;
     private final OrderRepository orderRepository;
+    private boolean ExisteAssistanceInvalidas;
 
     @Autowired
     public OrderServiceImpl(
@@ -33,14 +34,22 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void saveOrder(Order order, List<Long> assistsId) throws Exception {
         ArrayList<Assistance> list = new ArrayList<>();
+        ExisteAssistanceInvalidas = false;
         assistsId.forEach( id -> {
             Optional<Assistance> assistance = assistanceRepository.findById(id);
-            assistance.ifPresent(list::add);
-
+            if(assistance.isPresent()) {
+               list.add(assistance.get());
+            }
+            else{
+                ExisteAssistanceInvalidas = true;
+            }
         });
 
-        if (list.isEmpty()){
-            throw new MinimumAssistRequiredException("Error nas assistências", "Não encontramos nenhuma assistência valida");
+        if (ExisteAssistanceInvalidas){
+            throw new MinimumAssistRequiredException("Error na(s) assistência(s)", "Informado ordem para assistência inexistente!");
+        }
+        else if (list.isEmpty()){
+            throw new MinimumAssistRequiredException("Error na(s) assistência(s)", "Não encontramos nenhuma assistência valida");
         } else  if (list.size() > 15){
             throw new MaximumAssistException("Error nas assistências", "Não devemos enviar mais de 15 assistências");
         }
