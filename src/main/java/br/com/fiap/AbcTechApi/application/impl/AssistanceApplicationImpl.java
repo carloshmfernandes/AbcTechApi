@@ -2,10 +2,12 @@ package br.com.fiap.AbcTechApi.application.impl;
 
 import br.com.fiap.AbcTechApi.application.AssistanceApplication;
 import br.com.fiap.AbcTechApi.application.dto.AssistResponseDto;
+import br.com.fiap.AbcTechApi.entity.Assistance;
 import br.com.fiap.AbcTechApi.service.AssistanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,4 +29,14 @@ public class AssistanceApplicationImpl implements AssistanceApplication {
                 .collect(Collectors.toList());
         return assistDtos;
     }
+
+    @Override
+    public void createAssist(AssistResponseDto assistResponseDtos) throws Exception {
+        Assistance assistance = new Assistance();
+        assistance.setName(assistResponseDtos.getName());
+        assistance.setDescription(assistResponseDtos.getDescription());
+        
+        this.assistanceService.saveAssistance(assistance);
+    }
+
 }

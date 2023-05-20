@@ -1,5 +1,7 @@
 package br.com.fiap.AbcTechApi.service;
  
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import br.com.fiap.AbcTechApi.entity.Assistance;
 import br.com.fiap.AbcTechApi.entity.Order;
+import br.com.fiap.AbcTechApi.entity.OrderLocation;
 import br.com.fiap.AbcTechApi.handler.exception.MaximumAssistException;
 import br.com.fiap.AbcTechApi.handler.exception.MinimumAssistRequiredException;
 import br.com.fiap.AbcTechApi.repository.AssistanceRepository;
@@ -52,6 +55,25 @@ public class OrderServiceTest {
         newOrder.setOperatorId(1234L);
         Assertions.assertThrows(MaximumAssistException.class, () -> orderService.saveOrder(newOrder, List.of(1L, 2L, 3L, 4L, 5L,6L, 7L, 1L, 2L, 3L, 4L, 5L,6L, 7L, 1L, 2L)));
         Mockito.verify(orderRepository, Mockito.times(0)).save(newOrder);
+    }
+
+    @Test
+    public void create_order(){
+        //-23.650793978994333, -46.61424611750358        
+        Date datainicial = new Date();
+        Date datafinal = datainicial;        
+        Timestamp tsinicial = new Timestamp(datainicial.getTime());
+        datafinal.setTime(7200000);
+        Timestamp tsfinal = new Timestamp(datafinal.getTime());
+
+        Order order = new Order();
+        order.setOperatorId(1L);
+        order.setStartOrderLocation(
+                new OrderLocation(1L, -23.650793978994333, -46.61424611750358, tsinicial));
+        order.setStartOrderLocation(
+                    new OrderLocation(1L, -23.650793978994333, -46.61424611750358, tsfinal));
+
+        Mockito.verify(orderRepository, Mockito.times(0)).save(order);
     }
 
     //cenario criando order

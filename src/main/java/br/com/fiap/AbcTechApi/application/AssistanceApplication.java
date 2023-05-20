@@ -7,4 +7,6 @@ import java.util.List;
 public interface AssistanceApplication {
 
     public List<AssistResponseDto> getAssists();
+
+    public void createAssist(AssistResponseDto assistDto) throws Exception;
 }

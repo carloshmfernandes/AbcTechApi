@@ -1,6 +1,7 @@
 package br.com.fiap.AbcTechApi.service;
 
 import br.com.fiap.AbcTechApi.entity.Assistance;
+import br.com.fiap.AbcTechApi.handler.exception.EmptyAssistException;
 import br.com.fiap.AbcTechApi.repository.AssistanceRepository;
 import br.com.fiap.AbcTechApi.service.impl.AssistanceServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -38,6 +39,27 @@ public class AssistanceServiceTest {
         List<Assistance> list = assistanceService.getAssists();
         Assertions.assertNotNull(list);
         Assertions.assertEquals(list.size(), 1);
+    }
+
+    @Test
+    public void  create_assist() {
+        Assistance assistance = new Assistance();
+        assistance.setName("Create Assist Test");
+        assistance.setDescription("Create Assist Test");
+
+        Mockito.verify(assistanceRepository, Mockito.times(0)).save(assistance);
+        
+    }
+
+    // @Test public void create_asssist_vazio() {
+    //     List<Assistance> assistance = new Assistance();
+    //     assistance.setName("");
+    //     assistance.setDescription("");
+    //     Assertions.assertThrows(EmptyAssistException.class, () -> assistanceService.saveAssistance(assistance));
+    // }
+
+    @Test public void get_assists(){
+        assistanceService.getAssists();
     }
 
 }

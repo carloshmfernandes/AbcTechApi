@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RequestMapping("/assists")
+import javax.validation.Valid;
+
+@RequestMapping("/AbcTechApi/assists/")
 @RestController
 public class AssistanceController {
 
@@ -20,10 +22,18 @@ public class AssistanceController {
         this.assistanceApplication = assistanceApplication;
     }
 
-    @GetMapping
+    @GetMapping("get")
     public ResponseEntity<List<AssistResponseDto>> getAssists(){
 
         return ResponseEntity.ok(assistanceApplication.getAssists());
     }
+
+    @PostMapping("post")
+    public ResponseEntity<String> create(@Valid @RequestBody AssistResponseDto assistDto) throws Exception {
+
+        this.assistanceApplication.createAssist(assistDto);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

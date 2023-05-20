@@ -1,5 +1,6 @@
 package br.com.fiap.AbcTechApi.handler;
 
+import br.com.fiap.AbcTechApi.handler.exception.EmptyAssistException;
 import br.com.fiap.AbcTechApi.handler.exception.MaximumAssistException;
 import br.com.fiap.AbcTechApi.handler.exception.MinimumAssistRequiredException;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,13 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MaximumAssistException.class)
     public ResponseEntity<ErrorMessageResponse> errorMaxAssistRequired(MaximumAssistException exception){
+        ErrorMessageResponse error = new ErrorMessageResponse(exception.getMessage(), exception.getDescription(), HttpStatus.BAD_REQUEST.value());
+
+        return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmptyAssistException.class)
+    public ResponseEntity<ErrorMessageResponse> errorMinAssistRequired(EmptyAssistException exception){
         ErrorMessageResponse error = new ErrorMessageResponse(exception.getMessage(), exception.getDescription(), HttpStatus.BAD_REQUEST.value());
 
         return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);

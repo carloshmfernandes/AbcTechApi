@@ -48,10 +48,11 @@ public class OrderServiceImpl implements OrderService {
             throw new MinimumAssistRequiredException("Error na(s) assistência(s)", "Informado ordem para assistência inexistente!");
         }
         else if (list.isEmpty()){
-            throw new MinimumAssistRequiredException("Error na(s) assistência(s)", "Não encontramos nenhuma assistência valida");
+            throw new MinimumAssistRequiredException("Error na(s) assistência(s)", "Não encontramos nenhuma assistência válida!");
         } else  if (list.size() > 15){
-            throw new MaximumAssistException("Error nas assistências", "Não devemos enviar mais de 15 assistências");
+            throw new MaximumAssistException("Error nas assistências", "Não é permitido enviar mais de 15 assistências!");
         }
+        
         order.setAssists(list);
 
         orderRepository.save(order);
