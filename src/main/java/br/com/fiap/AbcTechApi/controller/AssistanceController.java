@@ -29,7 +29,7 @@ public class AssistanceController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> create(@Valid @RequestParam List<AssistResponseDto> assistDto) throws Exception {
+    public ResponseEntity<String> create(@Valid @RequestBody List<AssistResponseDto> assistDto) throws Exception {
 
         this.assistanceApplication.createAssist(assistDto);
         return ResponseEntity.ok().build();
