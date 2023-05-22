@@ -5,5 +5,5 @@ import java.util.List;
 public interface AssistanceService {
     List<Assistance> getAssists();
 
-    void saveAssistance(Assistance assistance) throws Exception;
+    void saveAssistance(List<Assistance> assistance) throws Exception;
 }

@@ -1,10 +1,10 @@
 package br.com.fiap.AbcTechApi.service.impl;
 
-import br.com.fiap.AbcTechApi.application.dto.AssistResponseDto;
 import br.com.fiap.AbcTechApi.entity.Assistance;
 import br.com.fiap.AbcTechApi.handler.exception.EmptyAssistException;
 import br.com.fiap.AbcTechApi.repository.AssistanceRepository;
 import br.com.fiap.AbcTechApi.service.AssistanceService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,18 +27,24 @@ public class AssistanceServiceImpl implements AssistanceService {
     }
 
     @Override
-    public void saveAssistance(Assistance assistance) throws Exception {
-        //List<Assistance> assistslist = new ArrayList<>();
-        
-        // assistance.forEach(name -> {
-        //    if (name.getName().isEmpty() == false){
-        //     throw new EmptyAssistException("Error na assistência", "Informe o nome para a serviço!");
-        //    }
-        //    if (name.getDescription().isEmpty()){
-        //     throw new EmptyAssistException("Error na assistência", "Informe a descrição para a serviço!");
-        //     }
-        // });
+    public void saveAssistance(List<Assistance> assistances) throws Exception {    
+        List<Assistance> assists = new ArrayList<>(); 
 
-        assistanceRepository.save(assistance);        
+        assistances.forEach(name -> {
+            Assistance assistance = assistanceRepository.findByName(name.getName()); 
+
+            if (name.getName() == "" ){
+                throw new EmptyAssistException("Error na(s) assistência(s)", "Nome deve ser informado!");
+            } else if (name.getDescription() == ""){
+                throw new EmptyAssistException("Error na(s) assistência(s)", "Descrição deve ser informada!");
+            }
+
+            if (assistance == null){
+                assists.add(name);
+            }
+        }
+        );
+        
+        assistanceRepository.saveAll(assists);
     }
 }

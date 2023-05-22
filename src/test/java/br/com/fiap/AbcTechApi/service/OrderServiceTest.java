@@ -30,11 +30,12 @@ public class OrderServiceTest {
     @MockBean
     private OrderRepository orderRepository;
 
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
+    
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
-        orderService = new OrderServiceImpl(assistanceRepository,orderRepository);
+        orderService = new OrderServiceImpl(assistanceRepository, orderRepository);
         Mockito.when(assistanceRepository.findById(Mockito.any()))
                 .thenReturn(Optional.of(new Assistance(1L, "Teste", "Teste Description")));
     }
@@ -58,22 +59,23 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void create_order(){
+    public void create_order() throws Exception {
         //-23.650793978994333, -46.61424611750358        
-        Date datainicial = new Date();
-        Date datafinal = datainicial;        
-        Timestamp tsinicial = new Timestamp(datainicial.getTime());
-        datafinal.setTime(7200000);
-        Timestamp tsfinal = new Timestamp(datafinal.getTime());
+        //Date datainicial = new Date();    
+        //Timestamp tsinicial = new Timestamp(datainicial.getTime());
+        //Timestamp tsfinal = new Timestamp(datainicial.getTime() + 7200000);
+
+        // Order newOrder = new Order();
+        // newOrder.setOperatorId(1L);
+        // Assertions.assertAll(()->orderService.saveOrder(newOrder, List.of(1L)));
+        // //newOrder.setStartOrderLocation(new OrderLocation(1L, -23.650793978994333, -46.61424611750358, tsinicial));
+        // //newOrder.setEndOrderLocation(new OrderLocation(1L, -23.650793978994333, -46.61424611750358, tsfinal));                    
+        // Mockito.verify(orderRepository, Mockito.times(0)).save(newOrder);
 
         Order order = new Order();
-        order.setOperatorId(1L);
-        order.setStartOrderLocation(
-                new OrderLocation(1L, -23.650793978994333, -46.61424611750358, tsinicial));
-        order.setStartOrderLocation(
-                    new OrderLocation(1L, -23.650793978994333, -46.61424611750358, tsfinal));
-
-        Mockito.verify(orderRepository, Mockito.times(0)).save(order);
+        order.setOperatorId(1234L);
+        Assertions.assertDoesNotThrow(() -> orderService.saveOrder(order, List.of(1L)));
+        Mockito.verify(orderRepository, Mockito.times(1)).save(order);
     }
 
     //cenario criando order

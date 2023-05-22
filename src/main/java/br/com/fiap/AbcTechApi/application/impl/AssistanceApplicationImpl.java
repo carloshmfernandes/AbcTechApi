@@ -31,12 +31,18 @@ public class AssistanceApplicationImpl implements AssistanceApplication {
     }
 
     @Override
-    public void createAssist(AssistResponseDto assistResponseDtos) throws Exception {
-        Assistance assistance = new Assistance();
-        assistance.setName(assistResponseDtos.getName());
-        assistance.setDescription(assistResponseDtos.getDescription());
+    public void createAssist(List<AssistResponseDto> assistResponseDtos) throws Exception {
+        ArrayList<Assistance> list = new ArrayList<>();
+
+        for(AssistResponseDto aDto: assistResponseDtos){
+            Assistance assistance = new Assistance();
+            assistance.setName(aDto.getName());
+            assistance.setDescription(aDto.getDescription());
+            
+            list.add(assistance);    
+        }        
         
-        this.assistanceService.saveAssistance(assistance);
+        this.assistanceService.saveAssistance(list);
     }
 
 }

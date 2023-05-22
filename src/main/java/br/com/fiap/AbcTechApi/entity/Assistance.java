@@ -11,7 +11,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "assistances")
-public class Assistance {   
+public class Assistance {  
+    
+    //public List<Assistance> assists; 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

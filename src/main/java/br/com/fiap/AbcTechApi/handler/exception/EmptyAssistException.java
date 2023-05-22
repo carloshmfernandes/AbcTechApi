@@ -1,5 +1,4 @@
 package br.com.fiap.AbcTechApi.handler.exception;
-
 import lombok.Getter;
 
 @Getter

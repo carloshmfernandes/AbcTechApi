@@ -8,5 +8,5 @@ public interface AssistanceApplication {
 
     public List<AssistResponseDto> getAssists();
 
-    public void createAssist(AssistResponseDto assistDto) throws Exception;
+    public void createAssist(List<AssistResponseDto> assistDto) throws Exception;
 }

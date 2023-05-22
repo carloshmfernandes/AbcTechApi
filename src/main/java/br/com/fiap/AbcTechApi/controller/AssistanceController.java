@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-@RequestMapping("/AbcTechApi/assists/")
+@RequestMapping("/assists")
 @RestController
 public class AssistanceController {
 
@@ -22,14 +22,14 @@ public class AssistanceController {
         this.assistanceApplication = assistanceApplication;
     }
 
-    @GetMapping("get")
+    @GetMapping()
     public ResponseEntity<List<AssistResponseDto>> getAssists(){
 
         return ResponseEntity.ok(assistanceApplication.getAssists());
     }
 
-    @PostMapping("post")
-    public ResponseEntity<String> create(@Valid @RequestBody AssistResponseDto assistDto) throws Exception {
+    @PostMapping()
+    public ResponseEntity<String> create(@Valid @RequestParam List<AssistResponseDto> assistDto) throws Exception {
 
         this.assistanceApplication.createAssist(assistDto);
         return ResponseEntity.ok().build();

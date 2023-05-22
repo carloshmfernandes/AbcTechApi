@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.AbcTechApi.util.VersionComponent;
 
 @RestController
-@RequestMapping("/AbcTechApi/")
+@RequestMapping()
 public class HealthCkechController {
 
     private VersionComponent versionComponent;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@RequestMapping("/AbcTechApi/order/")
+@RequestMapping("/Order/")
 @RestController
 public class OrderController {
 
@@ -22,8 +22,7 @@ public class OrderController {
         this.orderApplication = orderApplication;
     }
 
-
-    @PostMapping("create")
+    @PostMapping()
     public ResponseEntity<String> create(@Valid @RequestBody OrderDto orderDto) throws Exception {
 
         this.orderApplication.createOrder(orderDto);

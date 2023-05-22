@@ -11,8 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class OrderLocationDto {
-
+public class OrderLocationDto {    
+ 
     private Double latitude;
     private Double longitude;
 

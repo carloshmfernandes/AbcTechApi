@@ -12,17 +12,16 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
 public class AssistanceServiceTest {
 
-
-
-    private AssistanceService assistanceService;
     @MockBean
     private AssistanceRepository assistanceRepository;
 
+    private AssistanceService assistanceService;
 
     @BeforeEach
     public void init(){
@@ -42,24 +41,21 @@ public class AssistanceServiceTest {
     }
 
     @Test
-    public void  create_assist() {
-        Assistance assistance = new Assistance();
-        assistance.setName("Create Assist Test");
-        assistance.setDescription("Create Assist Test");
+    public void test_create_assist() {
+        List<Assistance> assists = new ArrayList<>(); 
+        assists.add(new Assistance(null, "Test", "Test Description"));
+        assists.add(new Assistance(null, "Test", "Test Description"));
 
-        Mockito.verify(assistanceRepository, Mockito.times(0)).save(assistance);
+        Mockito.verify(assistanceRepository, Mockito.times(0)).saveAll(assists);        
+    }
+
+    @Test
+    public void test_create_assist_vazio() {
+        List<Assistance> assists = new ArrayList<>(); 
+        assists.add(new Assistance(null, "Test 999", "Test Description"));
+        assists.add(new Assistance(null, "", "Test Description"));
+        Assertions.assertThrows(EmptyAssistException.class, () -> assistanceService.saveAssistance(assists));
         
+        Mockito.verify(assistanceRepository, Mockito.times(0)).saveAll(assists);
     }
-
-    // @Test public void create_asssist_vazio() {
-    //     List<Assistance> assistance = new Assistance();
-    //     assistance.setName("");
-    //     assistance.setDescription("");
-    //     Assertions.assertThrows(EmptyAssistException.class, () -> assistanceService.saveAssistance(assistance));
-    // }
-
-    @Test public void get_assists(){
-        assistanceService.getAssists();
-    }
-
 }
